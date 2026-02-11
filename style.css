@@ -19,6 +19,16 @@ body {
   display: block;
   clear: both; }
 
+.hamburger {
+  display: block;      /* 確保佢係一個獨立區塊 */
+  text-align: left;    /* 入面張圖靠左 */
+  padding: 15px;       /* 加返少少邊距，費事貼死條邊 */
+  cursor: pointer;
+    
+  /* 如果你個 body 用咗 Flexbox 令佢居中，加埋呢行： */
+  align-self: flex-start; 
+}
+
 h1.title {
   font-size: 36px;
   font-weight: bold;

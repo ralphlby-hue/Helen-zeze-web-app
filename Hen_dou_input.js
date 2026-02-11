@@ -1,3 +1,5 @@
+export let correct = false;
+
 export function setupInputHandler(containerId, callback) {
     const container = document.getElementById(containerId);
 
@@ -18,7 +20,22 @@ export function setupInputHandler(containerId, callback) {
 
         if (clickedElement) {
             console.log("玩家撳咗答案格：", clickedElement.textContent);
-            callback(clickedElement);
+            callback(clickedElement); // 佢唔知 currentQuestion 係乜嘢，唔好喺呢度對答案...
         }
     });
+}
+
+export function checkAnswer(selectedItem, currentQuestion) {
+    //console.log("玩家選擇嘅答案係：", selectedItem.textContent);
+    //console.log("正確答案係：", currentQuestion.syllable);
+    
+    if (selectedItem.textContent === currentQuestion.syllable) {
+        correct = true;
+        return correct;
+        //console.log("玩家答啱咗！");
+        } else {
+            correct = false;
+            return correct;
+            //console.log("玩家答錯咗！");
+        }
 }
