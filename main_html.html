@@ -8,19 +8,48 @@
 
     <body>      
         <div class="container">
+            <div id="screen-start" class="screen active">
+                <h1>故事烏鴉嘅小遊戲，考粵拼！</h1>
+                <button id="start-resume-btn" class="menu-btn" data-target-state="SELECT_MODE">開始玩！</button>
+                <button id="start-stats-btn" class="menu-btn" data-target-state="STATS">Stats</button>
+                <button id="start-settings-btn" class="menu-btn" data-target-state="SETTINGS">設定</button>
+            </div>
+
+            <div id="screen-selectDiff" class="screen active" style="display: none;">
+                <h1>選擇難度</h1>
+                <div id = "difficulty-options">
+                    <button id="select-easy-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="easy" data-mode="practice">初級小測</button>
+                    <button id="select-easy-end-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="easy" data-mode="endless">初級 - 無盡</button>
+                    <button id="select-medium-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="medium" data-mode="practice">中等小測</button>
+                    <button id="select-medium-end-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="medium" data-mode="endless">中等 - 無盡</button>
+                    <button id="select-hard-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="hard" data-mode="practice">高級小測</button>
+                    <button id="select-hard-end-btn" class="mode-btn" data-target-state="IN_GAME" data-diff="hard" data-mode="endless">高級 - 無盡</button>
+                </div>
+
+                <button id="select-menu-btn" class="menu-btn" data-target-state="START_MENU">返去 menu</button>
+            </div>
+
+            <div id="screen-stats" class="screen active" style="display: none;">
+                <h1>睇你自己嘅 stats</h1>
+                <button id="stats-menu-btn" class="menu-btn" data-target-state="START_MENU">返去 menu</button>
+            </div>
+
+            <div id="screen-setting" class="screen active" style="display: none;">
+                <h1>想設定乜嘢？</h1>
+                <button id="setting-menu-btn" class="menu-btn" data-target-state="START_MENU">返去 menu</button>
+            </div>
+
+            <div id="screen-pause" class="screen active" style="display: none;">
+                <h1>遊戲暫停</h1>
+                <button id="pause-resume-btn" class="menu-btn" data-target-state="IN_GAME">繼續玩遊戲</button>
+                <button id="pause-restart-btn" class="menu-btn" data-target-state="IN_GAME">重新開始過</button>
+                <button id="pause-settings-btn" class="menu-btn" data-target-state="START_MENU">返去 menu</button>
+            </div>
+
+            <div class="gameOn" style="display: none;">
             <div class="hamburger" id="hamburger" style="cursor: pointer;">
                 <img src="./Hamburger_icon.svg.png" alt="menu" width="30">
             </div>
-
-            <div id="pause-menu" class="pause-overlay" style="display: none;">
-                <div class="pause-content">
-                    <h1>遊戲暫停</h1>
-                    <button id="resume-btn" class="menu-btn">繼續玩遊戲</button>
-                    <button id="restart-btn" class="menu-btn">重新開始過</button>
-                    <button id="settings-btn" class="menu-btn">設定</button>
-                </div>
-            </div>
-
             <div class="heading">
             <h1 class="taai1tou4">一齊嚟認粵語嘅聲母同韻母！</h1>
             <div class="scores-container">
@@ -37,6 +66,7 @@
 
         <div id="answer-cells"></div>
         <div id="feedback"></div>
+        </div>
     </body>
 
 </html>
