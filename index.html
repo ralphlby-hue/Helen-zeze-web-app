@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粵韻道場 — Jyutping Dojo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;700;900&family=Noto+Serif+HK:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div id="app">
+      <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;">
+        <select id="lang-select" style="padding:0.5rem; border-radius:8px; font-family:inherit; background: rgba(255,255,255,0.8); border: 2px solid var(--primary-color, #c13a3a); cursor: pointer; color: var(--text-dark, #333);">
+          <option value="en">English</option>
+          <option value="zh">繁體中文</option>
+          <option value="ja">日本語</option>
+          <option value="zh-CN">简体中文</option>
+        </select>
+      </div>
+
+    <!-- Decorative elements -->
+    <div class="sakura-container" id="sakura-container"></div>
+
+    <!-- Title Screen -->
+    <div id="screen-title" class="screen active">
+      <div class="title-card">
+        <div class="mon">粵</div>
+        <h1 class="game-title">粵韻道場</h1>
+        <p class="game-subtitle">Jyutping Dojo</p>
+        <p class="game-tagline">聽聲辨韻・習粵拼之道</p>
+        <div class="title-buttons">
+          <button class="btn btn-primary" id="btn-start" data-i18n="mode.start">入門修行</button>
+          <button class="btn btn-secondary" id="btn-how-to-play" data-i18n="app.howto">遊玩指南</button>
+        </div>
+        <div class="title-footer">
+          <span class="ink-stamp">初心</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- How To Play Screen -->
+    <div id="screen-howto" class="screen">
+      <div class="howto-card">
+        <h2>遊玩指南</h2>
+        <div class="howto-grid">
+          <div class="howto-item">
+            <div class="howto-icon">🔊</div>
+            <h3>聽</h3>
+            <p>撳播放掣，聽清楚個粵語音節</p>
+          </div>
+          <div class="howto-item">
+            <div class="howto-icon">🎯</div>
+            <h3>揀</h3>
+            <p>喺四個選項入面揀出正確嘅粵拼</p>
+          </div>
+          <div class="howto-item">
+            <div class="howto-icon">❤️</div>
+            <h3>氣</h3>
+            <p>你有5點氣力(HP)，答錯會扣氣，答啱會回氣</p>
+          </div>
+          <div class="howto-item">
+            <div class="howto-icon">⭐</div>
+            <h3>悟</h3>
+            <p>連續答啱會進入「悟」嘅狀態，得分加倍</p>
+          </div>
+        </div>
+        <div class="tone-guide">
+          <h3>六聲速查</h3>
+          <div class="tone-chart">
+            <div class="tone-item"><span class="tone-num">1</span><span class="tone-name">高平</span><span class="tone-example">詩 si1</span></div>
+            <div class="tone-item"><span class="tone-num">2</span><span class="tone-name">高升</span><span class="tone-example">史 si2</span></div>
+            <div class="tone-item"><span class="tone-num">3</span><span class="tone-name">高去</span><span class="tone-example">試 si3</span></div>
+            <div class="tone-item"><span class="tone-num">4</span><span class="tone-name">低平</span><span class="tone-example">時 si4</span></div>
+            <div class="tone-item"><span class="tone-num">5</span><span class="tone-name">低升</span><span class="tone-example">市 si5</span></div>
+            <div class="tone-item"><span class="tone-num">6</span><span class="tone-name">低去</span><span class="tone-example">是 si6</span></div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-back-title">返回</button>
+      </div>
+    </div>
+
+    <!-- Mode Select Screen -->
+    <div id="screen-mode" class="screen">
+      <div class="mode-card">
+        <h2>選擇修行之道</h2>
+        <div class="mode-grid">
+          <button class="mode-btn" data-mode="initials">
+            <div class="mode-icon">聲</div>
+            <div class="mode-label" data-i18n="mode.initials">聲母篇</div>
+            <div class="mode-desc">辨別聲母 (b/p/m/f...)</div>
+          </button>
+          <button class="mode-btn" data-mode="finals">
+            <div class="mode-icon">韻</div>
+            <div class="mode-label" data-i18n="mode.finals">韻母篇</div>
+            <div class="mode-desc">辨別韻母 (aa/ai/au...)</div>
+          </button>
+          <button class="mode-btn" data-mode="tones">
+            <div class="mode-icon">調</div>
+            <div class="mode-label" data-i18n="mode.tones">聲調篇</div>
+            <div class="mode-desc">辨別六聲九調</div>
+          </button>
+          <button class="mode-btn" data-mode="full">
+            <div class="mode-icon">全</div>
+            <div class="mode-label" data-i18n="mode.full">全能篇</div>
+            <div class="mode-desc">辨別完整粵拼音節</div>
+          </button>
+          <button class="mode-btn" data-mode="words">
+            <div class="mode-icon">詞</div>
+            <div class="mode-label" data-i18n="mode.words">詞彙篇</div>
+            <div class="mode-desc">辨別常用粵語詞彙</div>
+          </button>
+          <button class="mode-btn" data-mode="challenge">
+            <div class="mode-icon">試</div>
+            <div class="mode-label" data-i18n="mode.challenge">挑戰篇</div>
+            <div class="mode-desc">限時挑戰・高手之路</div>
+          </button>
+        </div>
+        <div class="difficulty-select">
+          <h3>難度</h3>
+          <div class="diff-buttons">
+            <button class="diff-btn active" data-diff="easy">易</button>
+            <button class="diff-btn" data-diff="hard">難</button>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-begin">開始修行</button>
+        <button class="btn btn-ghost" id="btn-back-title2">返回</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="screen-game" class="screen">
+      <div class="game-hud">
+        <div class="hud-left">
+          <div class="hp-bar-container">
+            <div class="hp-label">氣力</div>
+            <div class="hp-bar">
+              <div class="hp-fill" id="hp-fill"></div>
+            </div>
+            <div class="hp-text" id="hp-text">5/5</div>
+          </div>
+        </div>
+        <div class="hud-center">
+          <div class="round-info">
+            <span class="round-label">第</span>
+            <span class="round-num" id="round-num">1</span>
+            <span class="round-label">問</span>
+          </div>
+          <div class="streak-display" id="streak-display" style="display:none;">
+            <span class="streak-flame">🔥</span>
+            <span class="streak-count" id="streak-count">0</span>
+            <span class="streak-label">連</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="score-display">
+            <div class="score-label">得分</div>
+            <div class="score-value" id="score-value">0</div>
+          </div>
+          <button class="btn-icon" id="btn-pause" title="暫停">⏸</button>
+        </div>
+      </div>
+
+      <div class="game-area">
+        <div class="question-card" id="question-card">
+          <div class="mode-badge" id="mode-badge">聲母篇</div>
+          <div class="question-prompt">呢個音節嘅粵拼係乜？</div>
+          <button class="play-btn" id="btn-play-audio">
+            <span class="play-icon">🔊</span>
+            <span class="play-text">播放聲音</span>
+          </button>
+          <div class="hint-area" id="hint-area" style="display:none;"></div>
+        </div>
+
+        <div class="answers-grid" id="answers-grid"></div>
+
+        <div class="feedback-area" id="feedback-area" style="display:none;">
+          <div class="feedback-content" id="feedback-content"></div>
+        </div>
+
+        <!-- Timer bar for challenge mode -->
+        <div class="timer-bar-container" id="timer-bar-container" style="display:none;">
+          <div class="timer-fill" id="timer-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause Overlay -->
+    <div id="screen-pause" class="overlay" style="display:none;">
+      <div class="pause-card">
+        <h2>暫停</h2>
+        <div class="pause-stats">
+          <p>得分：<span id="pause-score">0</span></p>
+          <p>正確率：<span id="pause-accuracy">0%</span></p>
+        </div>
+        <button class="btn btn-primary" id="btn-resume" data-i18n="pause.resume">繼續修行</button>
+        <button class="btn btn-secondary" id="btn-quit">返回道場</button>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="screen-gameover" class="screen">
+      <div class="gameover-card">
+        <div class="go-rank" id="go-rank">初心者</div>
+        <h2>修行結束</h2>
+        <div class="go-stats">
+          <div class="go-stat">
+            <div class="go-stat-value" id="go-score">0</div>
+            <div class="go-stat-label">得分</div>
+          </div>
+          <div class="go-stat">
+            <div class="go-stat-value" id="go-correct">0</div>
+            <div class="go-stat-label">答啱</div>
+          </div>
+          <div class="go-stat">
+            <div class="go-stat-value" id="go-total">0</div>
+            <div class="go-stat-label">總題</div>
+          </div>
+          <div class="go-stat">
+            <div class="go-stat-value" id="go-best-streak">0</div>
+            <div class="go-stat-label">最長連擊</div>
+          </div>
+        </div>
+        <div class="go-breakdown" id="go-breakdown"></div>
+        <div class="go-buttons">
+          <button class="btn btn-primary" id="btn-retry">再修行一次</button>
+          <button class="btn btn-secondary" id="btn-home">返回道場</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
