@@ -14,51 +14,6 @@ body {
   flex-direction: column;
   text-align: center; }
 
-/* 用嚟整 menu */
-.screen {
-    /* 啟動 Flexbox */
-    display: flex;
-    
-    /* 關鍵：將排列方向由橫向 (row) 轉為縱向 (column) */
-    flex-direction: column;
-    
-    /* 垂直置中 */
-    justify-content: center;
-    
-    /* 水平置中 */
-    align-items: center;
-    
-    /* 確保個 screen 佔滿全螢幕高度，咁置中先至好睇 */
-    height: 100vh;
-    
-    /* 掣與掣之間嘅距離 */
-    gap: 20px;
-}
-
-.screen button {
-    width: 200px;         /* 固定闊度，等啲掣齊整啲 */
-    padding: 15px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: 2px solid #333;
-    border-radius: 8px;
-    background-color: white;
-    transition: all 0.2s ease;
-}
-
-/* 設定包住 6 粒掣嘅容器 */
-#difficulty-options {
-    display: grid;
-    /* 定義 2 個 column，各佔一半空間 */
-    grid-template-columns: repeat(2, 1fr); 
-    /* 掣與掣之間嘅距離 */
-    gap: 15px; 
-    /* 設定一個最大闊度，等啲掣唔會喺大熒幕拉到太長 */
-    max-width: 500px; 
-    margin: 0 auto; /* 將個網格置中 */
-    padding: 20px 0; /* 上下留返少少位 */
-}
-
 .heading:after {
   content: "";
   display: block;

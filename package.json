@@ -1,5 +1,25 @@
 {
-  "dependencies": {
-    "phaser": "^3.90.0"
+  "name": "helen-zeze-web-app",
+  "version": "2.0.0",
+  "description": "粵語拼音學習遊戲 — Jyutping Learning Game with Japanese Aesthetics",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralphlby-hue/Helen-zeze-web-app.git"
+  },
+  "keywords": ["jyutping", "cantonese", "learning", "game"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ralphlby-hue/Helen-zeze-web-app/issues"
+  },
+  "homepage": "https://github.com/ralphlby-hue/Helen-zeze-web-app#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
   }
 }
